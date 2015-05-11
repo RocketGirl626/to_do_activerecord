@@ -2,6 +2,12 @@ require('spec_helper')
 
  describe(Task) do
 
+   it("tell which list it belongs to") do
+     list = List.create({:name => "list"})
+     task = Task.create({:description => "task", :list_id => list.id})
+     expect(task.list()).to(eq(list))
+   end
+
    describe('.not_done') do
      it('returns the not done tasks') do
        not_done_task1 = Task.create({:description => "gotta do it", :done => false})
